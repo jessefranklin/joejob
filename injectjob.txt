@@ -1,0 +1,2 @@
+Inject job
+curl -i -X POST -H 'Content-Type: application/json' -d '{"name": "Tom","serviceName": "Help Move","dateRequired":"Feb 15, 2014","serviceDesc": "Need help moving fridge out of house","location": {"lat": 43.6569832,"long": -79.44636469999999,"majorIntersection":"Dundas / Bloor"},"cost": {"type":"Fixed","hours":"4-6","amount":"90"},"category": "Manual Labour, Junk Removal"}' http://localhost:3000/jobs

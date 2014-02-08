@@ -1,0 +1,84 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'angular-cache' ]
+2 info using npm@1.1.63
+3 info using node@v0.8.12
+4 verbose read json /Users/jessefrankling/joejobs/package.json
+5 warn package.json joejobs@0.0.0 No README.md file found!
+6 verbose read json /Users/jessefrankling/joejobs/node_modules/angular-promise-cache/package.json
+7 verbose read json /Users/jessefrankling/joejobs/node_modules/compass/package.json
+8 verbose read json /Users/jessefrankling/joejobs/node_modules/express/package.json
+9 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt/package.json
+10 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-autoprefixer/package.json
+11 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-bower-install/package.json
+12 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-concurrent/package.json
+13 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-clean/package.json
+14 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-coffee/package.json
+15 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-compass/package.json
+16 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-concat/package.json
+17 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-connect/package.json
+18 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-copy/package.json
+19 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-cssmin/package.json
+20 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-htmlmin/package.json
+21 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-jshint/package.json
+22 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-uglify/package.json
+23 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-contrib-watch/package.json
+24 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-google-cdn/package.json
+25 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-newer/package.json
+26 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-ngmin/package.json
+27 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-rev/package.json
+28 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-svgmin/package.json
+29 verbose read json /Users/jessefrankling/joejobs/node_modules/grunt-usemin/package.json
+30 verbose read json /Users/jessefrankling/joejobs/node_modules/jshint-stylish/package.json
+31 verbose read json /Users/jessefrankling/joejobs/node_modules/load-grunt-tasks/package.json
+32 verbose read json /Users/jessefrankling/joejobs/node_modules/mongodb/package.json
+33 verbose read json /Users/jessefrankling/joejobs/node_modules/route/package.json
+34 verbose read json /Users/jessefrankling/joejobs/node_modules/time-grunt/package.json
+35 verbose from cache /Users/jessefrankling/joejobs/package.json
+36 verbose readDependencies using package.json deps
+37 verbose cache add [ 'angular-cache', null ]
+38 silly cache add name=undefined spec="angular-cache" args=["angular-cache",null]
+39 verbose parsed url { pathname: 'angular-cache',
+39 verbose parsed url   path: 'angular-cache',
+39 verbose parsed url   href: 'angular-cache' }
+40 silly lockFile 842189d4-angular-cache angular-cache
+41 verbose lock angular-cache /Users/jessefrankling/.npm/842189d4-angular-cache.lock
+42 silly lockFile 842189d4-angular-cache angular-cache
+43 verbose addNamed [ 'angular-cache', '' ]
+44 verbose addNamed [ null, '' ]
+45 silly lockFile b0247a0c-angular-cache angular-cache@
+46 verbose lock angular-cache@ /Users/jessefrankling/.npm/b0247a0c-angular-cache.lock
+47 silly addNameRange { name: 'angular-cache', range: '', hasData: false }
+48 verbose url raw angular-cache
+49 verbose url resolving [ 'https://registry.npmjs.org/', './angular-cache' ]
+50 verbose url resolved https://registry.npmjs.org/angular-cache
+51 info trying registry request attempt 1 at 19:14:35
+52 http GET https://registry.npmjs.org/angular-cache
+53 http 404 https://registry.npmjs.org/angular-cache
+54 silly registry.get cb [ 404,
+54 silly registry.get   { date: 'Mon, 03 Feb 2014 00:14:36 GMT',
+54 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B)',
+54 silly registry.get     'content-type': 'application/json',
+54 silly registry.get     via: '1.1 varnish',
+54 silly registry.get     'cache-control': 'max-age=0',
+54 silly registry.get     'content-length': '52',
+54 silly registry.get     'accept-ranges': 'bytes',
+54 silly registry.get     age: '0',
+54 silly registry.get     'x-served-by': 'cache-v42-ASH, cache-at50-ATL',
+54 silly registry.get     'x-cache': 'MISS, MISS',
+54 silly registry.get     'x-cache-hits': '0, 0',
+54 silly registry.get     'x-timer': 'S1391386475.999356031,VS0,VS6,VE37,VE45',
+54 silly registry.get     'keep-alive': 'timeout=10, max=50',
+54 silly registry.get     connection: 'Keep-Alive' } ]
+55 silly lockFile b0247a0c-angular-cache angular-cache@
+56 error 404 'angular-cache' is not in the npm registry.
+56 error 404 You should bug the author to publish it
+56 error 404
+56 error 404 Note that you can also install from a
+56 error 404 tarball, folder, or http url, or git url.
+57 error System Darwin 13.0.0
+58 error command "node" "/usr/local/bin/npm" "install" "angular-cache"
+59 error cwd /Users/jessefrankling/joejobs
+60 error node -v v0.8.12
+61 error npm -v 1.1.63
+62 error code E404
+63 verbose exit [ 1, true ]

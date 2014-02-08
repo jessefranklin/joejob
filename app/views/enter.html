@@ -1,0 +1,41 @@
+<div id="settingsholder">
+
+<label>Name
+	<input ng-model="job.name" placeholder="Name" />
+</label>
+<label>Service Required
+<input ng-model="job.serviceName" placeholder="Service Required"/>
+</label>
+<label>Date Required
+<input ng-model="job.dateRequired" placeholder="Date Required"/>
+</label>
+
+<h2>Location</h2>
+<label>Latitude
+<input ng-model="job.location.lat" />
+</label>
+<label>Longitude
+<input ng-model="job.location.long" />
+</label>
+<label>Major Intersection
+<input ng-model="job.location.majorIntersection" />
+</label>
+
+<label>Cost Type
+<input ng-model="job.cost.type" />
+</label>
+<label>Hours of Service
+<input ng-model="job.cost.hours" />
+</label>
+<label>Amount
+<input ng-model="job.cost.amount" />
+</label>
+<label>Category
+<input ng-model="job.category" />
+</label>
+<input type="button" ng-click="addJob(job)" value="addJob" />
+<hr/>  
+{{job | json}}
+</div>        
+
+ 

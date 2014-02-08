@@ -1,0 +1,35 @@
+
+
+<div class="jumbotron">
+  
+  <h1>Enter your location</h1>
+  <input type="text" ng-Autocomplete ng-model="location" placeholder="Search by Location" />
+  <select type="select" ng-model="radius">
+    <option value="25">25</option> 
+    <option value="50">50</option> 
+  </select>
+  <p class="lead">
+    <a href="#">Allow joejobs to user your current location.</a>
+  </p>
+  <p><a class="btn btn-lg btn-success" ng-href="#">Search</a></p>
+</div>
+
+<google-map center='map.center' zoom='map.zoom' draggable='true'>
+         <markers models="map.markers" coords="'self'" icon="'icon'" click="'onClicked'" >
+            <window show="'showWindow'" closeClick="'closeClick'">
+                <p ng-non-bindable>{This is an info window at {{ latitude | number:4 }}, {{ longitude | number:4 }}!}</p> 
+            </window>
+        </markers>
+</google-map> 
+
+<div class="row marketing">
+  <h4>Joe Jobs are temporary work needed or one time hand work needed your local area.</h4>
+  <p>
+    Enrich your community and add to the growth of it entreprnuers. Take jobs you dont want to do and employ your neighbour.
+  </p>
+</div>
+
+
+{{coords}}
+
+{{jobs}}
