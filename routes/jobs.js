@@ -97,7 +97,8 @@ var populateDB = function() {
 	'dateRequired':'Feb 15, 2014',
 	'serviceDesc': 'Need help moving fridge out of house',
 	'location': {
-		'lat': '48.444514',
+		'address': '21 Ruttan St.',
+        'lat': '48.444514',
 		'long': '-89.217045',
 		'majorIntersection':'Dundas / Bloor'
 	},
@@ -114,6 +115,7 @@ var populateDB = function() {
 	'dateRequired':'Feb 15, 2014',
 	'serviceDesc': 'Tend to Garden once a month',
 	'location': {
+        'address': '21 Ruttan St.',
 		'lat': '48.444414',
 		'long': '-89.217045',
 		'majorIntersection':'Dundas / Roncesvalle'

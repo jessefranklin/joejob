@@ -25,13 +25,21 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
         templateUrl: 'views/detail.html',
         controller: 'DetailCtrl'
       })
+      .when('/edit/:id', {
+        templateUrl: 'views/edit.html',
+        controller: 'EditCtrl'
+      })
       .when('/menu', {
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'
       })
-      .when('/enter', {
+      .when('/add', {
         templateUrl: 'views/enter.html',
         controller: 'EnterCtrl'
+      })
+      .when('/manage', {
+        templateUrl: 'views/manage.html',
+        controller: 'ManageCtrl'
       })
       .otherwise({
         redirectTo: '/'
