@@ -1,0 +1,13 @@
+<div>
+
+<ul>
+	<li ng-repeat="job in jobs">
+		{{job.name}}
+		<a href="#/edit/{{job._id}}" ng-click="">Edit</a>
+		<a href="" ng-click="deleteJob(job._id)">Delete</a>
+	</li>
+</ul>
+
+</div>        
+
+ 

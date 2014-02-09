@@ -68,5 +68,44 @@ app.factory('jobsService', ['$rootScope', '$http', '$q', '$angularCacheFactory',
   };
 
 
+  service.deleteJob = function(data) {
+
+    var deferred = $q.defer(),
+        start = new Date().getTime();
+
+    $http.delete('http://127.0.0.1:3000/jobs/'+data)
+       .success(function(data) {
+        console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
+        deferred.resolve(data);
+      })
+      .error(function(data, status){
+        deferred.reject({
+          'status': status,
+          'data': data
+        });
+      });
+
+    return deferred.promise;
+  };
+
+
+  service.editJob = function(id, data) {
+
+    var deferred = $q.defer();
+    
+    $http.put('http://127.0.0.1:3000/jobs/'+id, data)
+       .success(function(data) {
+        deferred.resolve(data);
+      })
+      .error(function(data, status){
+        deferred.reject({
+          'status': status,
+          'data': data
+        });
+      });
+
+    return deferred.promise;
+  };
+
   return service;
 }]);
