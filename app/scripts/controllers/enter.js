@@ -13,15 +13,15 @@ app.controller('EnterCtrl', ['$rootScope', '$scope', 'jobsService', function ($r
 	      var promise = jobsService.postJob($scope.job);
 
 	      promise.then(function(data){
-			console.log(data);
-			}, function(data){
-				// error response
-				$rootScope.$broadcast('connectionFailure');
-			});
-	    } else {
-	      alert('Geocode was not successful for the following reason: ' + status);
-	   	 }
-	  	});
+					
+				}, function(data){
+					// error response
+					console.log(data);
+				});
+			} else {
+				alert('Geocode was not successful for the following reason: ' + status);
+			}
+		});
 
 		
 
