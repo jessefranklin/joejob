@@ -2,17 +2,31 @@ app.controller('EnterCtrl', ['$rootScope', '$scope', 'jobsService', function ($r
 	'use strict';
 
 	$scope.job = {};
+	var geocoder;
 
 	$scope.addJob = function() {
-		console.log($scope.job);
-		var promise = jobsService.postJob($scope.job);
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': $scope.job.location.address}, function(results, status) {
+	    if (status === 'OK') {
+	      $scope.job.location.lat = results[0].geometry.location.d;
+	      $scope.job.location.long = results[0].geometry.location.e;
+	      var promise = jobsService.postJob($scope.job);
 
-		promise.then(function(data){
+	      promise.then(function(data){
 			console.log(data);
-		}, function(data){
-			// error response
-			$rootScope.$broadcast('connectionFailure');
-		});
+			}, function(data){
+				// error response
+				$rootScope.$broadcast('connectionFailure');
+			});
+	    } else {
+	      alert('Geocode was not successful for the following reason: ' + status);
+	   	 }
+	  	});
+
+		
+
 	};
+
+
 }]);
 

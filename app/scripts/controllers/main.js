@@ -1,4 +1,4 @@
-app.controller('MainCtrl', ['$rootScope', '$scope', 'geolocation', 'jobs', function ($rootScope, $scope, geolocation, jobs) {
+app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 'jobs', function ($rootScope, $scope, $location, geolocation, jobs) {
 	'use strict';
 
 	$scope.coords = {};
@@ -24,7 +24,9 @@ app.controller('MainCtrl', ['$rootScope', '$scope', 'geolocation', 'jobs', funct
 			$scope.map.markers.push({
 				name: $scope.jobs[i].serviceDesc,
 				latitude: $scope.jobs[i].location.lat,
-				longitude: $scope.jobs[i].location.long
+				longitude: $scope.jobs[i].location.long,
+				title: $scope.jobs[i].serviceName,
+				id : $scope.jobs[i]._id
 			});
 			//$scope.map.click.push('gotoDetailView($scope.jobs[i]._id)');
 		}
@@ -40,8 +42,11 @@ app.controller('MainCtrl', ['$rootScope', '$scope', 'geolocation', 'jobs', funct
 		};
 
 
-	$scope.gotoDetailView = function(){
-		alert();
+	$scope.onMarkerClicked = function (id) {
+		console.log(id);
+		$location.path('/detail/'+id);
+		//$scope.marker.showWindow = true;
+        //window.alert("Marker: lat: " + marker.latitude + ", lon: " + marker.longitude + " clicked!!")
 	};
 
 }]);

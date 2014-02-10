@@ -12,14 +12,10 @@
 
 <h2>Location</h2>
 <label>Address
-<input ng-model="job.location.address" />
+<input ng-model="job.location.address" ng-Autocomplete />
 </label>
-<label>Latitude
-<input ng-model="job.location.lat" />
-</label>
-<label>Longitude
-<input ng-model="job.location.long" />
-</label>
+<input type="hidden" ng-model="job.location.lat" />
+<input type="hidden" ng-model="job.location.long" />
 <label>Major Intersection
 <input ng-model="job.location.majorIntersection" />
 </label>

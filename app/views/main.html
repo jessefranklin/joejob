@@ -1,9 +1,9 @@
 
 
-<div class="jumbotron">
+<div class="jumbotron"  >
   
   <h1>Enter your location</h1>
-  <input type="text" ng-Autocomplete ng-model="location" placeholder="Search by Location" />
+  <input type="text" ng-Autocomplete ng-model="location" id="location" placeholder="Search by Location" />
   <select type="select" ng-model="radius">
     <option value="25">25</option> 
     <option value="50">50</option> 
@@ -11,15 +11,17 @@
   <p class="lead">
     <a href="#">Allow joejobs to user your current location.</a>
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Search</a></p>
+  <p><a class="btn btn-lg btn-success" ng-href="#" value="Geocode" ng-click="codeAddress();">Search</a></p>
 </div>
-
 <google-map center='map.center' zoom='map.zoom' draggable='true'>
-         <markers models="map.markers" coords="'self'" icon="'icon'" click="'onClicked'" >
-            <window show="'showWindow'" closeClick="'closeClick'">
-                <p ng-non-bindable>{This is an info window at {{ latitude | number:4 }}, {{ longitude | number:4 }}!}</p> 
+         <marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m.id)">
+            <marker-label content="m.title" anchor="22 0" class="marker-labels"/>
+            <window ng-show="m.showWindow" closeClick="m.closeClick()">
+                <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
+
+                <p class="muted">My marker will stay open when the window is popped up!</p>
             </window>
-        </markers>
+        </marker>
 </google-map> 
 
 <div class="row marketing">
@@ -30,6 +32,3 @@
 </div>
 
 
-{{coords}}
-
-{{jobs}}
