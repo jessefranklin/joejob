@@ -13,16 +13,10 @@
   </p>
   <p><a class="btn btn-lg btn-success" ng-href="#" value="Geocode" ng-click="codeAddress();">Search</a></p>
 </div>
-<google-map center='map.center' zoom='map.zoom' events="map.events" draggable='true'>
-         <markers models="map.markers" coords="'self'" icon="'icon'" click="'onClicked'" fit='true'>
-            <windows show="'showWindow'" closeClick="'closeClick'">
-                <p>{{markers.title}}</p>
-
-                <p class="muted">My marker will stay open when the window is popped up!</p>
-            </windows>
-        </markers>
-</google-map> 
-
+   <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
 <div class="row marketing">
   <h4>Joe Jobs are temporary work needed or one time hand work needed your local area.</h4>
   <p>
