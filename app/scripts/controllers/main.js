@@ -43,11 +43,12 @@ app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 
 
 
 	$scope.onMarkerClicked = function (id) {
-		console.log(id);
+		//marker.showWindow = true;
 		$location.path('/detail/'+id);
 		//$scope.marker.showWindow = true;
         //window.alert("Marker: lat: " + marker.latitude + ", lon: " + marker.longitude + " clicked!!")
 	};
 
+	
 }]);
 

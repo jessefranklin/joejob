@@ -14,14 +14,13 @@
   <p><a class="btn btn-lg btn-success" ng-href="#" value="Geocode" ng-click="codeAddress();">Search</a></p>
 </div>
 <google-map center='map.center' zoom='map.zoom' events="map.events" draggable='true'>
-         <marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m.id)">
-            <marker-label content="m.title" anchor="22 0" class="marker-labels"/>
-            <window ng-show="m.showWindow" closeClick="m.closeClick()">
-                <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
+         <markers models="map.markers" coords="'self'" icon="'icon'" click="'onClicked'" fit='true'>
+            <windows show="'showWindow'" closeClick="'closeClick'">
+                <p>{{markers.title}}</p>
 
                 <p class="muted">My marker will stay open when the window is popped up!</p>
-            </window>
-        </marker>
+            </windows>
+        </markers>
 </google-map> 
 
 <div class="row marketing">
