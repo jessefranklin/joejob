@@ -1,8 +1,11 @@
-app.controller('EnterCtrl', ['$rootScope', '$scope', 'jobsService', function ($rootScope, $scope, jobsService) {
+app.controller('EnterCtrl', ['$rootScope', '$scope', 'jobsService', 'globalFunc', function ($rootScope, $scope, jobsService, globalFunc) {
 	'use strict';
 
 	$scope.job = {};
+	$scope.categories = globalFunc.categories;
 	var geocoder;
+
+
 
 	$scope.addJob = function() {
 		geocoder = new google.maps.Geocoder();
@@ -13,7 +16,7 @@ app.controller('EnterCtrl', ['$rootScope', '$scope', 'jobsService', function ($r
 	      var promise = jobsService.postJob($scope.job);
 
 	      promise.then(function(data){
-					
+
 				}, function(data){
 					// error response
 					console.log(data);

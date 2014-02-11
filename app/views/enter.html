@@ -6,22 +6,21 @@
 <label>Service Required
 <input ng-model="job.serviceName" placeholder="Service Required"/>
 </label>
+<label>Service Description
+<textarea ng-model="job.serviceDesc" placeholder="50 Char max"/></textarea>
+</label>
 <label>Date Required
 <input ng-model="job.dateRequired" placeholder="Date Required"/>
 </label>
-
-<h2>Location</h2>
 <label>Address
 <input ng-model="job.location.address" ng-Autocomplete />
 </label>
-<input type="hidden" ng-model="job.location.lat" />
-<input type="hidden" ng-model="job.location.long" />
-<label>Major Intersection
-<input ng-model="job.location.majorIntersection" />
-</label>
 
 <label>Cost Type
-<input ng-model="job.cost.type" />
+<select ng-model="job.cost.type">
+	<option value="perhour">Per Hour</option>
+	<option value="fixed">Fixed Cost</option>
+</select>
 </label>
 <label>Hours of Service
 <input ng-model="job.cost.hours" />
@@ -30,7 +29,11 @@
 <input ng-model="job.cost.amount" />
 </label>
 <label>Category
-<input ng-model="job.category" />
+<select ng-model="job.category">
+	<option ng-repeat="cat in categories" value="{{cat.name}}">
+		{{cat.name}}
+	</option>
+</select>
 </label>
 <input type="button" ng-click="addJob(job)" value="addJob" />
 <hr/>  

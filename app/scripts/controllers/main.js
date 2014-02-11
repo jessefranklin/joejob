@@ -8,6 +8,19 @@ app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 
 			lat:data.coords.latitude,
 			long:data.coords.longitude
 		};
+		$scope.map.setCenter(new google.maps.LatLng($scope.coords.lat, $scope.coords.long));
+		//Places Marker where user is
+		$scope.marker = new MarkerWithLabel({
+			map: $scope.map,
+			position: new google.maps.LatLng($scope.coords.lat, $scope.coords.long),
+			icon: '../images/you.png',
+			labelContent: 'You',
+			labelAnchor: new google.maps.Point(16, 0),
+			animation: google.maps.Animation.DROP,
+			labelClass: 'labels',
+			labelStyle: {opacity: 1}
+		});
+		
 	});
 	
 	var jobList = jobs;
@@ -18,7 +31,7 @@ app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 
 
 	var mapOptions = {
 		zoom: 14,
-		center: new google.maps.LatLng(40.0000, -98.0000),
+		center: new google.maps.LatLng(0,0),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
@@ -27,25 +40,27 @@ app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 
 	$scope.markers = [];
 
 	var infoWindow = new google.maps.InfoWindow(),
-		image = '../img/money.png',
+		image = '../images/green-flag.png',
 		createMarker = function (info){
 			var marker = new MarkerWithLabel({
-	            map: $scope.map,
-	            position: new google.maps.LatLng(info.location.lat, info.location.long),
-	            title: info.name,
-	            labelContent: info.name,
-				labelAnchor: new google.maps.Point(22, 0),
-				labelClass: 'labels',
-				labelStyle: {opacity: 0.75}
+				map: $scope.map,
+				position: new google.maps.LatLng(info.location.lat, info.location.long),
+				icon: image,
+				title: info.name,
+				labelContent: '$'+info.cost.amount,
+				labelAnchor: new google.maps.Point(20, 22),
+				labelClass: 'label-job',
+				labelStyle: {opacity: 1}
 			});
 			marker.content = '<div class="infoWindowContent">' + info.serviceName + '</div>';
         
 			google.maps.event.addListener(marker, 'click', function(){
-				infoWindow.setContent('<h2>'+info.serviceName+'</h2>'+ info.serviceDesc +'<br /><a href="#/detail/'+info._id+'" class="button">Click</a>');
+				infoWindow.setContent('<h2>'+info.serviceName+'</h2>'+ info.serviceDesc +'<br /><a href="#/detail/'+info._id+'" class="button">Do it</a>');
 				infoWindow.open($scope.map, marker);
 			});
         
 			$scope.markers.push(marker);
+
     };
     
 	jobList.then(function(data){
@@ -60,5 +75,16 @@ app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 
 		google.maps.event.trigger(selectedMarker, 'click');
 	};
 	
+	var geocoder;
+	$scope.codeAddress = function(){
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': $scope.location}, function(results, status) {
+			if (status === 'OK') {
+				$scope.map.setCenter(results[0].geometry.location);
+			}
+	    });
+	}
+
+
 }]);
 
