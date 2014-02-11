@@ -8,6 +8,9 @@ app.controller('DetailCtrl', ['$rootScope', '$scope', '$routeParams', 'geolocati
 	
 	jobDetail.then(function(data){
 		$scope.jobs = data;
+		if($scope.jobs.cost.type === 'perhour'){
+			$scope.jobs.cost.amount = $scope.jobs.cost.hours * $scope.jobs.cost.amount;
+		}
 	}, function(data){
     // error response
     $rootScope.$broadcast('connectionFailure');
