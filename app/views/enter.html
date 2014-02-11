@@ -10,24 +10,30 @@
 <textarea ng-model="job.serviceDesc" placeholder="50 Char max"/></textarea>
 </label>
 <label>Date Required
-<input ng-model="job.dateRequired" placeholder="Date Required"/>
+<input ng-model="job.dateRequired" b-datepicker placeholder="Date Required"/><i class="icon-calendar"></i>
 </label>
 <label>Address
-<input ng-model="job.location.address" ng-Autocomplete />
+<input ng-model="job.location.address" required ng-Autocomplete />
 </label>
 
 <label>Cost Type
 <select ng-model="job.cost.type">
-	<option value="perhour">Per Hour</option>
+	<option value="hr">Per Hour</option>
 	<option value="fixed">Fixed Cost</option>
 </select>
 </label>
-<label>Hours of Service
+<label>Est. Hours of Service
 <input ng-model="job.cost.hours" />
 </label>
 <label>Amount
 <input ng-model="job.cost.amount" />
+<span ng-show="job.cost.type === 'hr'">/hr.</span>
+<span ng-show="job.cost.type === 'fixed'">Fixed Cost Total</span>
 </label>
+<div ng-show="job.cost.type === 'hr'">
+	Total = {{job.cost.hours * job.cost.amount}}
+</div>
+
 <label>Category
 <select ng-model="job.category">
 	<option ng-repeat="cat in categories" value="{{cat.name}}">

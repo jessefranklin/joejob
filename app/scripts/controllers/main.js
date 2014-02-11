@@ -24,9 +24,15 @@ app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 
 	});
 	
 	var jobList = jobs;
+		
 	
 	jobList.then(function(data){
 		$scope.jobs = data.data;
+		var total = 0;
+		for (var i = 0; i < $scope.jobs.length; i ++){
+			total = (total + parseInt($scope.jobs[i].cost.amount));
+		}
+		$scope.total = total;
 	});
 
 	var mapOptions = {
@@ -55,7 +61,7 @@ app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 
 			marker.content = '<div class="infoWindowContent">' + info.serviceName + '</div>';
         
 			google.maps.event.addListener(marker, 'click', function(){
-				infoWindow.setContent('<h2>'+info.serviceName+'</h2>'+ info.serviceDesc +'<br /><a href="#/detail/'+info._id+'" class="button">Do it</a>');
+				infoWindow.setContent('<h4>'+info.serviceName+'</h4>'+ info.serviceDesc +'<br /><a href="#/detail/'+info._id+'" class="button"><i class="icon-plus"></i>Do it</a>');
 				infoWindow.open($scope.map, marker);
 			});
         
