@@ -164,7 +164,7 @@ exports.findAllUsers = function(req, res) {
  
 exports.addUser = function(req, res) {
     var user = req.body;
-    console.log('Adding user: ' + JSON.stringify(job));
+    console.log('Adding user: ' + JSON.stringify(user));
     db.collection('users', function(err, collection) {
         collection.insert(user, {safe:true}, function(err, result) {
             if (err) {

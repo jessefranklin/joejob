@@ -41,6 +41,14 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
         templateUrl: 'views/manage.html',
         controller: 'ManageCtrl'
       })
+      .when('/user', {
+        templateUrl: 'views/user.html',
+        controller: 'UserCtrl'
+      })
+      .when('/signin', {
+        templateUrl: 'views/signin.html',
+        controller: 'SigninCtrl'
+      })
       .otherwise({
         redirectTo: '/'
 			});
