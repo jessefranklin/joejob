@@ -4,7 +4,7 @@ app.controller('SigninCtrl', ['$rootScope', '$scope', 'userService', 'globalFunc
 	$scope.user = {};
 
 	$scope.Signin = function() {
-	      var promise = userService.addUser($scope.user);
+	      var promise = userService.signIn($scope.user);
 	      promise.then(function(data){
 
 			}, function(data){
