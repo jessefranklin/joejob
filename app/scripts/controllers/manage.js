@@ -1,9 +1,11 @@
-app.controller('ManageCtrl', ['$rootScope', '$scope', 'jobsService', function ($rootScope, $scope, jobsService) {
+app.controller('ManageCtrl', ['$rootScope', '$scope', 'jobsService', 'userService', function ($rootScope, $scope, jobsService, userService) {
 	'use strict';
 
 	$scope.jobs = {};
-
-	var promise = jobsService.getJobs();
+	//get all jobs
+	//var promise = jobsService.getJobs();
+	var x = $scope.user.user_id;
+	var promise = jobsService.getAllJobsById(x);
 
 	promise.then(function(data){
 		$scope.jobs = data;
@@ -11,6 +13,8 @@ app.controller('ManageCtrl', ['$rootScope', '$scope', 'jobsService', function ($
 		// error response
 		console.log(data);
 	});
+
+
 
 	$scope.deleteJob = function(data){
 		jobsService.deleteJob(data);

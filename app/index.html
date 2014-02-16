@@ -24,12 +24,13 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="header">
-      <ul class="nav nav-pills pull-right">
+      <ul class="nav nav-pills pull-right" >
         <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ng-href="#/add">Add Job</a></li>
-        <li><a ng-href="#/user">Add User</a></li>
-        <li><a ng-href="#/signin">Sign in</a></li>
-        <li><a ng-href="#/manage">Manage</a></li>
+        <li><a ng-href="#/add" ng-show="user.authorized">Add Job</a></li>
+        <li><a ng-href="#/signup" ng-hide="user.authorized">Sign Up</a></li>
+        <li><a ng-href="#/login" ng-hide="user.authorized">Login</a></li>
+        <li><a ng-href="#/manage" ng-show="user.authorized">Manage</a></li>
+        <li><a ng-href="#/" ua-logout ng-show="user.authorized">Logout</a></li>
       </ul>
       <h3 class="text-muted">joejobs</h3>
     </div>
@@ -68,7 +69,9 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
+    
+    <script src="bower_components/userapp/userapp.client.js"></script>
+<script src="bower_components/userapp-angular/angularjs.userapp.js"></script><script src="scripts/app.js"></script>
     <script src="scripts/config.js"></script>
     <script src="scripts/routes.js"></script>
     <script src="scripts/global.js"></script>

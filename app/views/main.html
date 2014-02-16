@@ -1,6 +1,8 @@
 
 
 <div class="jumbotron"  >
+  <div ng-show="user.authorized">Welcome {{ user.first_name }}!</div>
+ 
  <h1> ${{total}} to earn.</h1>
   <h2>Enter your location</h2>
   <input type="text" ng-Autocomplete ng-model="location" id="location" placeholder="Search by Location" />

@@ -34,6 +34,16 @@ exports.findById = function(req, res) {
         });
     });
 };
+
+exports.findAllById = function(req, res) {
+    var id = req.params.id;
+    //console.log('Retrieving job: ' + id);
+    db.collection('jobs', function(err, collection) {
+        collection.find({'owner': id}).toArray(function(err, item) {
+            res.send(item);
+        });
+    });
+};
  
 exports.findAll = function(req, res) {
     db.collection('jobs', function(err, collection) {
@@ -145,10 +155,10 @@ var populateDB = function() {
 
 
 exports.findUserById = function(req, res) {
-    var id = req.params.id;
-    console.log('Retrieving job: ' + id);
+    var name = req.body.name;
+    //console.log(req);
     db.collection('users', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+        collection.find({'name': name}, function(err, item) {
             res.send(item);
         });
     });

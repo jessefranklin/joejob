@@ -47,6 +47,30 @@ app.factory('jobsService', ['$rootScope', '$http', '$q', '$angularCacheFactory',
     return deferred.promise;
   };
 
+
+  service.getAllJobsById = function(id) {
+
+    var deferred = $q.defer(),
+        start = new Date().getTime();
+    
+    $http.get('http://127.0.0.1:3000/myjobs/' + id)
+      .success(function(data) {
+        console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
+        deferred.resolve(data);
+      })
+      .error(function(data, status){
+        deferred.reject({
+          'status': status,
+          'data': data
+        });
+
+        // display 404 if we can't find Id
+        $rootScope.$broadcast('pageNotFound');
+      });
+
+    return deferred.promise;
+  };
+
   service.postJob = function(data) {
 
     var deferred = $q.defer(),

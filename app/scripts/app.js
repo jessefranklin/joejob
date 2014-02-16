@@ -9,7 +9,8 @@ var app = angular.module('joejobsApp', [
   'google-maps',
   'jmdobry.angular-cache',
   'ngAutocomplete',
-  'geolocation'
+  'geolocation',
+  'UserApp'
 ]);
 
 
@@ -19,15 +20,18 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        public: true
       })
       .when('/detail/:id', {
         templateUrl: 'views/detail.html',
-        controller: 'DetailCtrl'
+        controller: 'DetailCtrl',
+        public: true
       })
       .when('/edit/:id', {
         templateUrl: 'views/edit.html',
-        controller: 'EditCtrl'
+        controller: 'EditCtrl',
+        public: true
       })
       .when('/menu', {
         templateUrl: 'views/menu.html',
@@ -45,9 +49,13 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
         templateUrl: 'views/user.html',
         controller: 'UserCtrl'
       })
-      .when('/signin', {
-        templateUrl: 'views/signin.html',
-        controller: 'SigninCtrl'
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        public: true, login: true
+      })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        public: true
       })
       .otherwise({
         redirectTo: '/'
@@ -59,7 +67,9 @@ app.factory('jobs', ['$http', function($http){
 
 }]);
 
-app.run(['$window', '$rootScope', '$location', 'globalConfig', function($window, $rootScope, $location, globalConfig){
+app.run(['$window', '$rootScope', '$location', 'globalConfig', 'user', function($window, $rootScope, $location, globalConfig, user){
+  
+  user.init({appId:'52fadd59e2c0b'});
   // Setting global config variable for root access across app
 	$rootScope.globalConfig = globalConfig;
 

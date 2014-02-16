@@ -3,6 +3,8 @@ app.controller('MainCtrl', ['$rootScope', '$scope', '$location', 'geolocation', 
 
 	$scope.coords = {};
 
+	console.log($scope.user);
+
 	geolocation.getLocation().then(function(data){
 		$scope.coords = {
 			lat:data.coords.latitude,

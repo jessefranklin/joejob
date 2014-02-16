@@ -27,9 +27,8 @@ app.factory('userService', ['$rootScope', '$http', '$q', '$angularCacheFactory',
 
     var deferred = $q.defer(),
         start = new Date().getTime();
-
-    $http.post('http://127.0.0.1:8080/login/', data)
-    //$http.get('http://127.0.0.1:3000/users/' + id)
+        //console.log(data);
+    $http.get('http://127.0.0.1:3000/login/', data)
       .success(function(data) {
         console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
         deferred.resolve(data);
@@ -52,8 +51,8 @@ app.factory('userService', ['$rootScope', '$http', '$q', '$angularCacheFactory',
     var deferred = $q.defer(),
         start = new Date().getTime();
 
-    $http.post('http://127.0.0.1:8080/signup/', data)
-    //$http.post('http://127.0.0.1:3000/users/', data)
+    
+    $http.post('http://127.0.0.1:3000/users/', data)
        .success(function(data) {
         console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
         deferred.resolve(data);

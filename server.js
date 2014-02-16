@@ -19,12 +19,14 @@ app.configure(function () {
  
 app.get('/jobs', jobs.findAll);
 app.get('/jobs/:id', jobs.findById);
+app.get('/myjobs/:id', jobs.findAllById);
 app.post('/jobs', jobs.addJob);
 app.put('/jobs/:id', jobs.updateJob);
 app.delete('/jobs/:id', jobs.deleteJob);
 
+//User connections
 app.get('/users', jobs.findAllUsers);
-app.get('/users/:id', jobs.findUserById);
+app.get('/login/', jobs.findUserById);
 app.post('/users', jobs.addUser);
 app.put('/users/:id', jobs.updateUser);
 app.delete('/users/:id', jobs.deleteUser);
