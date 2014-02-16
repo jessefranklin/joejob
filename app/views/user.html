@@ -1,0 +1,19 @@
+<div id="settingsholder">
+
+
+<label>Email
+	<input ng-model="local.email" placeholder="Name" />
+</label>
+<label>Password
+<input ng-model="local.password" placeholder="Service Required"/>
+</label>
+<label>Role
+<input ng-model="local.role" required />
+</label>
+
+<input type="button" ng-click="addUser()" value="Sign Up" />
+<hr/>  
+{{local | json}}
+</div>        
+
+ 

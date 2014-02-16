@@ -1,14 +1,14 @@
 'use strict';
 
-app.factory('jobsService', ['$rootScope', '$http', '$q', '$angularCacheFactory', function($rootScope, $http, $q, $angularCacheFactory){
+app.factory('userService', ['$rootScope', '$http', '$q', '$angularCacheFactory', function($rootScope, $http, $q, $angularCacheFactory){
 
   var service = {};
 
-  service.getJobs = function() {
+  service.getUsers = function() {
     var deferred = $q.defer(),
         start = new Date().getTime();
    
-    $http.get('http://127.0.0.1:3000/jobs/')
+    $http.get('http://127.0.0.1:3000/users/')
       .success(function(data) {
         console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
         deferred.resolve(data);
@@ -23,37 +23,12 @@ app.factory('jobsService', ['$rootScope', '$http', '$q', '$angularCacheFactory',
     return deferred.promise;
   };
 
-  service.getJobById = function(id) {
+  service.signIn = function(data) {
 
     var deferred = $q.defer(),
         start = new Date().getTime();
-
-    
-    $http.get('http://127.0.0.1:3000/jobs/' + id)
-      .success(function(data) {
-        console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
-        deferred.resolve(data);
-      })
-      .error(function(data, status){
-        deferred.reject({
-          'status': status,
-          'data': data
-        });
-
-        // display 404 if we can't find Id
-        $rootScope.$broadcast('pageNotFound');
-      });
-
-    return deferred.promise;
-  };
-
-
-  service.getAllJobsById = function(id) {
-
-    var deferred = $q.defer(),
-        start = new Date().getTime();
-    
-    $http.get('http://127.0.0.1:3000/myjobs/' + id)
+        //console.log(data);
+    $http.get('http://127.0.0.1:3000/login/', data)
       .success(function(data) {
         console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
         deferred.resolve(data);
@@ -71,12 +46,13 @@ app.factory('jobsService', ['$rootScope', '$http', '$q', '$angularCacheFactory',
     return deferred.promise;
   };
 
-  service.postJob = function(data) {
+  service.signUp = function(data) {
 
     var deferred = $q.defer(),
         start = new Date().getTime();
 
-    $http.post('http://127.0.0.1:3000/jobs/', data)
+    
+    $http.post('http://127.0.0.1:3000/users/', data)
        .success(function(data) {
         console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
         deferred.resolve(data);
@@ -92,12 +68,12 @@ app.factory('jobsService', ['$rootScope', '$http', '$q', '$angularCacheFactory',
   };
 
 
-  service.deleteJob = function(data) {
+  service.deleteUser = function(data) {
 
     var deferred = $q.defer(),
         start = new Date().getTime();
 
-    $http.delete('http://127.0.0.1:3000/jobs/'+data)
+    $http.delete('http://127.0.0.1:3000/users/'+data)
        .success(function(data) {
         console.log('time taken for request: ' + (new Date().getTime() - start) + 'ms');
         deferred.resolve(data);
@@ -113,11 +89,11 @@ app.factory('jobsService', ['$rootScope', '$http', '$q', '$angularCacheFactory',
   };
 
 
-  service.editJob = function(id, data) {
+  service.editUser = function(id, data) {
 
     var deferred = $q.defer();
     
-    $http.put('http://127.0.0.1:3000/jobs/'+id, data)
+    $http.put('http://127.0.0.1:3000/users/'+id, data)
        .success(function(data) {
         deferred.resolve(data);
       })
