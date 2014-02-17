@@ -22,6 +22,12 @@ db.open(function(err, db) {
                 populateUsersDB();
             }
         });
+        db.collection('communicate', {strict:true}, function(err, collection) {
+            if (err) {
+                console.log("The 'Communicate' collection doesn't exist. Creating it with sample data...");
+                populateActionDB();
+            }
+        });
     }
 });
  
@@ -243,3 +249,105 @@ var populateUsersDB = function() {
     });
  
 };
+
+
+
+exports.findRequestById = function(req, res) {
+    var id = req.params.id;
+    console.log('Retrieving requests: ' + id);
+    db.collection('requests', function(err, collection) {
+        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+            res.send(item);
+        });
+    });
+};
+
+exports.findAllRequestsById = function(req, res) {
+    var id = req.params.id;
+    console.log('Retrieving requests: ' + id);
+    db.collection('requests', function(err, collection) {
+        collection.find({'jobOwner': id}).toArray(function(err, item) {
+                res.send(item);
+            });
+    });
+};
+ 
+exports.findAllRequests = function(req, res) {
+    db.collection('requests', function(err, collection) {
+        collection.find().toArray(function(err, items) {
+            res.send(items);
+        });
+    });
+};
+ 
+exports.newRequest = function(req, res) {
+    var request = req.body;
+    console.log('Adding requests: ' + JSON.stringify(request));
+    db.collection('requests', function(err, collection) {
+        collection.insert(request, {safe:true}, function(err, result) {
+            if (err) {
+                res.send({'error':'An error has occurred'});
+            } else {
+                console.log('Success: ' + JSON.stringify(result[0]));
+                res.send(result[0]);
+            }
+        });
+    });
+};
+ 
+exports.updateRequest = function(req, res) {
+    var id = req.params.id;
+    var request = req.body;
+    console.log('Updating request: ' + id);
+    console.log(JSON.stringify(request));
+    db.collection('requests', function(err, collection) {
+        collection.update({'_id':new BSON.ObjectID(id)}, request, {safe:true}, function(err, result) {
+            if (err) {
+                console.log('Error updating job: ' + err);
+                res.send({'error':'An error has occurred'});
+            } else {
+                console.log('' + result + ' document(s) updated');
+                res.send(job);
+            }
+        });
+    });
+};
+ 
+exports.removeRequest = function(req, res) {
+    console.log(req);
+    var id = req.params.id;
+    console.log('Deleting job: ' + id);
+    db.collection('requests', function(err, collection) {
+        collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
+            if (err) {
+                res.send({'error':'An error has occurred - ' + err});
+            } else {
+                console.log('' + result + ' document(s) deleted');
+                res.send(req.body);
+            }
+        });
+    });
+};
+
+
+// You'd typically not find this code in a real-life app, since the database would already exist.
+var populateActionDB = function() {
+ 
+    var communicate = [
+    {
+    'jobId': '12',
+    'applicantId':'12',
+    'ownerId': '12',
+    'status': 'owner',
+
+    }];
+ 
+    db.collection('communicate', function(err, collection) {
+        collection.insert(communicate, {safe:true}, function(err, result) {});
+    });
+ 
+};
+
+
+
+

@@ -31,6 +31,14 @@ app.post('/users', jobs.addUser);
 app.put('/users/:id', jobs.updateUser);
 app.delete('/users/:id', jobs.deleteUser);
  
+// connections
+app.get('/communicate', jobs.findAllRequests);
+app.get('/requests/:id', jobs.findAllRequestsById);
+app.get('/communicate/:id', jobs.findRequestById);
+app.post('/communicate', jobs.newRequest);
+app.put('/communicate/:id', jobs.updateRequest);
+app.delete('/communicate/:id', jobs.removeRequest);
+
 app.listen(3000);
 console.log('Listening on port 3000...');
 

@@ -30,6 +30,7 @@
         <li><a ng-href="#/signup" ng-hide="user.authorized">Sign Up</a></li>
         <li><a ng-href="#/login" ng-hide="user.authorized">Login</a></li>
         <li><a ng-href="#/manage" ng-show="user.authorized">Manage</a></li>
+        <li><a ng-href="#/manage-requests" ng-show="user.authorized">Manage Requests </a></li>
         <li><a ng-href="#/" ua-logout ng-show="user.authorized">Logout</a></li>
       </ul>
       <h3 class="text-muted">joejobs</h3>
@@ -37,7 +38,8 @@
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
     <div class="footer">
-      <p>&copy; 2014 joejobs.com <span class="right"><a href="#">Privacy</a> | <a href="#">Help</a></span></p>
+      <p>&copy; 2014 joejobs.com 
+        <span class="right"><a href="#">Privacy</a> | <a href="#">Help</a></span></p>
     </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -78,6 +80,7 @@
     <script src="scripts/directives.js"></script>
     <script src="scripts/userservice.js"></script>
     <script src="scripts/service.js"></script>
+    <script src="scripts/communicateservice.js"></script>
 
     <script src='bower_components/underscore/underscore-min.js'></script>        
     <script src='bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
@@ -90,8 +93,10 @@
     <script src="scripts/controllers/edit.js"></script>
     <script src="scripts/controllers/detail.js"></script>
     <script src="scripts/controllers/manage.js"></script>
+    <script src="scripts/controllers/manage-requests.js"></script>
     <script src="scripts/controllers/user.js"></script>
     <script src="scripts/controllers/signin.js"></script>
+    <script src="scripts/controllers/thankyou.js"></script>
     
 
   

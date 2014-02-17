@@ -28,6 +28,11 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
         controller: 'DetailCtrl',
         public: true
       })
+      .when('/thankyou/:id', {
+        templateUrl: 'views/thankyou.html',
+        controller: 'ThanksCtrl',
+        public: true
+      })
       .when('/edit/:id', {
         templateUrl: 'views/edit.html',
         controller: 'EditCtrl',
@@ -44,6 +49,10 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
       .when('/manage', {
         templateUrl: 'views/manage.html',
         controller: 'ManageCtrl'
+      })
+      .when('/manage-requests', {
+        templateUrl: 'views/manage-requests.html',
+        controller: 'ManageRequestsCtrl'
       })
       .when('/user', {
         templateUrl: 'views/user.html',

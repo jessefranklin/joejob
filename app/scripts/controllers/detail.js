@@ -1,8 +1,10 @@
 
-app.controller('DetailCtrl', ['$rootScope', '$scope', '$routeParams', 'geolocation', 'jobsService', function ($rootScope, $scope, $routeParams, geolocation, jobsService) {
+app.controller('DetailCtrl', ['$rootScope', '$scope', '$routeParams', '$location', 'geolocation', 'jobsService', 'comService', function ($rootScope, $scope, $routeParams, $location, geolocation, jobsService, comService) {
 	'use strict';
 
 	$scope.idParam = $routeParams.id;
+	$scope.request = {};
+	$scope.jobs = {};
 
 	var jobDetail = jobsService.getJobById($scope.idParam);
 	
@@ -11,10 +13,30 @@ app.controller('DetailCtrl', ['$rootScope', '$scope', '$routeParams', 'geolocati
 		if($scope.jobs.cost.type === 'perhour'){
 			$scope.jobs.cost.amount = $scope.jobs.cost.hours * $scope.jobs.cost.amount;
 		}
-	}, function(data){
+	}, function(){
     // error response
     $rootScope.$broadcast('connectionFailure');
   });
+
+	var userId = $scope.user.user_id;
+
+	$scope.createRequest = function(){
+		$scope.request.jobId = $scope.jobs._id;
+		$scope.request.jobOwner = $scope.jobs.owner;
+		$scope.request.applicant = userId;
+		$scope.request.status = 'owner';
+		$scope.request.comments = '';
+
+		var applyforjob = comService.makeRequest($scope.request);
+
+		applyforjob.then(function(data){
+			$location.path('/thankyou/' + $scope.jobs._id);
+		}, function(){
+	    // error response
+	    $rootScope.$broadcast('connectionFailure');
+	  });
+
+	}
 
 }]);
 

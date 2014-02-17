@@ -4,8 +4,9 @@ app.controller('ManageCtrl', ['$rootScope', '$scope', 'jobsService', 'userServic
 	$scope.jobs = {};
 	//get all jobs
 	//var promise = jobsService.getJobs();
-	var x = $scope.user.user_id;
-	var promise = jobsService.getAllJobsById(x);
+	var userId = $scope.user.user_id;
+	
+	var promise = jobsService.getAllJobsById(userId);
 
 	promise.then(function(data){
 		$scope.jobs = data;
