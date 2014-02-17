@@ -1,4 +1,14 @@
 <div>
+
+<h1>Approved {{(requests | filter:{status:'approved'}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'approved'}">
+		{{$index + 1}} {{request}}
+		<a href="#" ng-click="confirmRequest();">Confirm</a>
+	</li>
+</ul>
+
+
 <h1>Jobs {{(requests | filter:{jobOwner:user.user_id}).length}}</h1>
 <ul>
 	<li ng-repeat="request in requests | filter: {jobOwner:user.user_id}">

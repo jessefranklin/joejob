@@ -17,26 +17,28 @@ app.controller('ViewRequestCtrl', ['$rootScope', '$scope', '$routeParams', '$loc
 	//var userId = $scope.user.user_id;
 
 	$scope.updateRequest = function(data){
-		if(data === 'Decline') {
+		if(data === 'decline') {
+			console.log(data);
 			$scope.request.status = 'decline';
 			$scope.request.stage = 2;
 		} else {
-			$scope.request.status = 'accept';
-			$scope.request.status = 'applicant';
+			$scope.request.status = 'approved';
 			$scope.request.stage = 2;
 		}
 
+		delete $scope.request._id;
 		
-		var applyforjob = comService.updateRequest($scope.request);
+		var comRequest = comService.updateRequest($scope.idParam, $scope.request);
 
-		applyforjob.then(function(data){
-			
+		comRequest.then(function(data){
+			$location.path('/manage-requests/');
 		}, function(){
 	    // error response
 	    $rootScope.$broadcast('connectionFailure');
 	  });
 
-	}
+
+	};
 
 }]);
 
