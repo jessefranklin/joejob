@@ -5,7 +5,6 @@ app.controller('ManageRequestsCtrl', ['$rootScope', '$scope', 'jobsService', 'us
 	//get all jobs
 	//var promise = comService.getAllRequests();
 	var userId = $scope.user.user_id;
-	
 	var promise = comService.getAllRequestsById(userId);
 
 	promise.then(function(data){

@@ -62,6 +62,16 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
         templateUrl: 'views/login.html',
         public: true, login: true
       })
+      .when('/edit-request/:id', {
+        templateUrl: 'views/edit-request.html',
+        controller: 'EditCtrl',
+        public: true
+      })
+      .when('/view-request/:id', {
+        templateUrl: 'views/view-request.html',
+        controller: 'ViewRequestCtrl',
+        public: true
+      })
       .when('/signup', {
         templateUrl: 'views/signup.html',
         public: true

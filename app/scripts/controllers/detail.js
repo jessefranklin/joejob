@@ -21,11 +21,17 @@ app.controller('DetailCtrl', ['$rootScope', '$scope', '$routeParams', '$location
 	var userId = $scope.user.user_id;
 
 	$scope.createRequest = function(){
+		$scope.request.jobTitle = $scope.jobs.name;
+		$scope.request.jobCategory = $scope.jobs.category;
 		$scope.request.jobId = $scope.jobs._id;
 		$scope.request.jobOwner = $scope.jobs.owner;
 		$scope.request.applicant = userId;
 		$scope.request.status = 'owner';
+		$scope.request.stage = 1;
 		$scope.request.comments = '';
+		$scope.request.rating = '';
+		$scope.request.cash = $scope.jobs.cost.amount;
+
 
 		var applyforjob = comService.makeRequest($scope.request);
 

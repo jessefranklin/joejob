@@ -266,7 +266,7 @@ exports.findAllRequestsById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving requests: ' + id);
     db.collection('requests', function(err, collection) {
-        collection.find({'jobOwner': id}).toArray(function(err, item) {
+        collection.find({ $or:[{'applicant':id}, {'jobOwner': id}]}).toArray(function(err, item) {
                 res.send(item);
             });
     });

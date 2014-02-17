@@ -1,11 +1,31 @@
 <div>
-<h1>{{requests.length}}</h1>
+<h1>Jobs {{(requests | filter:{jobOwner:user.user_id}).length}}</h1>
 <ul>
-	<li ng-repeat="request in requests">
-{{$index + 1}}
-		{{request}}
+	<li ng-repeat="request in requests | filter: {jobOwner:user.user_id}">
+	{{$index + 1}}{{request}}
+		<a href="#/view-request/{{request._id}}">View</a>
 		<a href="#/edit-request/{{request._id}}" ng-click="">Edit</a>
 		<a href="" ng-click="deleteRequest(request._id)">Delete</a>
+	</li>
+</ul>
+
+
+<h1>Applicants {{(requests | filter:{status:'owner'}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'owner'}">
+
+		{{$index + 1}} {{request}}
+		<a href="#/view-request/{{request._id}}">View</a>
+		<a href="#/edit-request/{{request._id}}" ng-click="">Edit</a>
+		<a href="" ng-click="deleteRequest(request._id)">Delete</a>
+	</li>
+</ul>
+
+<h1>Declined {{(requests | filter:{status:'decline'}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'decline'}">
+		{{$index + 1}} {{request}}
+		<a href="" ng-click="deleteRequest(request._id)">Remove</a>
 	</li>
 </ul>
 
