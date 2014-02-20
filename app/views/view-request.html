@@ -1,13 +1,19 @@
 
-
+<img src="http://placehold.it/150x150" alt="user img" class="img-circle">
 <div class="row marketing">
   <h1>{{request.jobTitle}}</h1>
-  
-  <h3>{{jobs.dateRequired}}</h3>
-  <p>{{jobs.serviceDesc}}<br />
-  {{jobs.location.majorIntersection}}
-  </p>
-  <p>{{jobs.category}}</p>
+
+<p>{{request.applicant}}</p>
+<p>{{request.jobCategory}}</p>
+
+<div>
+  Rating is {{rating}} <br/>
+  <div user-rating rating-value="rating" max="5" on-rating-selected="saveRatingToServer(rating)"></div>
+</div>
+<textarea ng-model="request.comment"></textarea>
+<a href="" class="btn" ng-click="completeRequest();">Complete and Close Request</a>
+
+
 
   <a href="" class="btn" ng-click="updateRequest('accept');">Accept</a>
   <a href="" class="btn" ng-click="updateRequest('decline');">Decline</a>

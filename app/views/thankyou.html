@@ -1,22 +1,10 @@
 
-
-
-{{jobs}}
 <div class="row marketing">
 
-  <h1>Thank you <br />{{jobs.name}}</h1>
-  <h2>{{jobs.serviceName}}</h2>
-  <p ng-show="jobs.cost.type === 'hr'">
-  	${{jobs.cost.amount}}/{{jobs.cost.type}} for {{jobs.cost.hours}} hours.
-  </p>
-  <p ng-show="jobs.cost.type === 'fixed'">
-  	${{jobs.cost.amount}} {{jobs.cost.type}} cost for {{jobs.cost.hours}} hours of service.
-  </p>
-  <h3>{{jobs.dateRequired}}</h3>
-  <p>{{jobs.serviceDesc}}<br />
-  {{jobs.location.majorIntersection}}
-  </p>
-  <p>{{jobs.category}}</p>
+  <h1>Thank you {{ user.first_name }}</h1>
+  <h2>Your request has been submitted and is being reviewed by the job poster.</h2>
+  <p>You will be notified when the client Approves or Declines your offer.</p>
 
-  <a href="" class="btn" ng-click="createRequest();">Lets do this!</a>
+  <a href="/" class="btn btn-default">View status of pending jobs</a>
+  <a href="/" class="btn btn-default">Back to home</a>
 </div>

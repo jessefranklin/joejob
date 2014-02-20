@@ -10,7 +10,9 @@
 <textarea ng-model="job.serviceDesc" placeholder="50 Char max"/></textarea>
 </label>
 <label>Date Required
-<input ng-model="job.dateRequired" b-datepicker placeholder="Date Required"/><i class="icon-calendar"></i>
+<input ng-model="job.dateRequired" ui-date ui-date-format="DD, d MM, yy"  placeholder="Date Required"/>
+{{job.dateRequired}}
+
 </label>
 <label>Address
 <input ng-model="job.location.address" required ng-Autocomplete />

@@ -1,33 +1,51 @@
 <div>
 
-<h1>Approved {{(requests | filter:{status:'approved'}).length}}</h1>
-<ul>
-	<li ng-repeat="request in requests | filter: {status:'approved'}">
-		{{$index + 1}} {{request}}
-		<a href="#" ng-click="confirmRequest();">Confirm</a>
-	</li>
-</ul>
 
-
-<h1>Jobs {{(requests | filter:{jobOwner:user.user_id}).length}}</h1>
+<h1>My Jobs <small>{{(requests | filter:{jobOwner:user.user_id}).length}}</small></h1>
 <ul>
 	<li ng-repeat="request in requests | filter: {jobOwner:user.user_id}">
 	{{$index + 1}}{{request}}
-		<a href="#/view-request/{{request._id}}">View</a>
-		<a href="#/edit-request/{{request._id}}" ng-click="">Edit</a>
-		<a href="" ng-click="deleteRequest(request._id)">Delete</a>
+		<a href="#/view-request/{{request._id}}" class="btn btn-default">View</a>
+		<a href="#/edit/{{request.jobId}}" class="btn btn-default" ng-click="">Edit</a>
+		<a href="" ng-click="deleteRequest(request._id)" class="btn btn-default">Delete</a>
+	</li>
+</ul>
+<h1>Applicants for my Jobs{{(requests | filter:{status:'owner','jobOwner': user.user_id}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'owner','jobOwner': user.user_id}">
+
+		{{$index + 1}} {{request}}
+		<a href="#/view-request/{{request._id}}" class="btn btn-default">View</a>
+		<a href="#/edit-request/{{request._id}}" class="btn btn-default" ng-click="">Edit</a>
+		<a href="" ng-click="deleteRequest(request._id)" class="btn btn-default">Delete</a>
+	</li>
+</ul>
+{{user.user_id}}
+<h1>Scheduled {{(requests | filter:{status:'confirmed','jobOwner': user.user_id}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'confirmed','jobOwner': user.user_id}">
+		{{request}}
+		<a href="#/view-request/{{request._id}}" class="btn btn-default" ng-click="">Job Completed</a>
+		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Alert Change</a>
+	</li>
+</ul>
+
+{{user.user_id}}
+<h1>Completed {{(requests | filter:{status:'completed','jobOwner': user.user_id}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'completed','jobOwner': user.user_id}">
+		{{request}}
+		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Archive</a>
 	</li>
 </ul>
 
 
-<h1>Applicants {{(requests | filter:{status:'owner'}).length}}</h1>
+<h1>Applicants Requests in progress</h1>
+<h1>Approved {{(requests | filter:{status:'approved','applicant': user.user_id}).length}}</h1>
 <ul>
-	<li ng-repeat="request in requests | filter: {status:'owner'}">
-
+	<li ng-repeat="request in requests | filter: {status:'approved','applicant': user.user_id }">
 		{{$index + 1}} {{request}}
-		<a href="#/view-request/{{request._id}}">View</a>
-		<a href="#/edit-request/{{request._id}}" ng-click="">Edit</a>
-		<a href="" ng-click="deleteRequest(request._id)">Delete</a>
+		<a href="#" ng-click="confirmRequest(request);" class="btn btn-default">Confirm</a>
 	</li>
 </ul>
 
@@ -35,7 +53,17 @@
 <ul>
 	<li ng-repeat="request in requests | filter: {status:'decline'}">
 		{{$index + 1}} {{request}}
-		<a href="" ng-click="deleteRequest(request._id)">Remove</a>
+		<a href="" ng-click="deleteRequest(request._id)" class="btn btn-default">Remove</a>
+	</li>
+</ul>
+
+
+<h1>Completed {{(requests | filter:{status:'completed','applicant': user.user_id}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'completed','applicant': user.user_id}">
+		{{request}}
+		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">View Rating and Comment</a>
+		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Archive</a>
 	</li>
 </ul>
 

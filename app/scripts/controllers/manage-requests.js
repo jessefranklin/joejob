@@ -14,7 +14,24 @@ app.controller('ManageRequestsCtrl', ['$rootScope', '$scope', 'jobsService', 'us
 		console.log(data);
 	});
 
+	$scope.request = {};
+	$scope.confirmRequest = function(data){
+		$scope.request = data;
+		var id = data._id;
+		$scope.request.status = 'confirmed';
+		$scope.request.stage = 3;
 
+		delete $scope.request._id;
+
+		var comRequest = comService.updateRequest(id, $scope.request);
+
+		comRequest.then(function(data){
+			console.log(data);
+		}, function(){
+	    // error response
+			$rootScope.$broadcast('connectionFailure');
+		});
+	};
 
 	$scope.deleteRequest = function(data){
 		//console.log(data);
