@@ -33,6 +33,26 @@ app.controller('ManageRequestsCtrl', ['$rootScope', '$scope', 'jobsService', 'us
 		});
 	};
 
+	$scope.archiveRequest = function(){
+		$scope.request.status = 'archive';
+		if($scope.request.jobOwner === user.user_id){
+			$scope.request.ownerArchive = true;
+		} else if ($scope.request.applicant === user.user_id){
+			$scope.request.applicantArchive = true;
+		}
+
+		delete $scope.request._id;
+
+		var comRequest = comService.updateRequest($scope.idParam, $scope.request);
+		comRequest.then(function(data){
+			$location.path('/manage-requests/');
+		}, function(){
+	    // error response
+	    $rootScope.$broadcast('connectionFailure');
+	  });
+	};
+
+
 	$scope.deleteRequest = function(data){
 		//console.log(data);
 		comService.deleteRequest(data);

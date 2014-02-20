@@ -32,6 +32,8 @@ app.controller('DetailCtrl', ['$rootScope', '$scope', '$routeParams', '$location
 		$scope.request.comment = '';
 		$scope.request.rating = '';
 		$scope.request.cash = $scope.jobs.cost.amount;
+		$scope.request.ownerArchive = false;
+		$scope.request.applicantArchive = false;
 
 
 		var applyforjob = comService.makeRequest($scope.request);

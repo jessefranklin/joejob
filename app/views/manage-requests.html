@@ -31,11 +31,19 @@
 </ul>
 
 {{user.user_id}}
-<h1>Completed {{(requests | filter:{status:'completed','jobOwner': user.user_id}).length}}</h1>
+<h1>Completed {{(requests | filter:{status:'completed','jobOwner': user.user_id, 'ownerArchive':false}).length}}</h1>
 <ul>
-	<li ng-repeat="request in requests | filter: {status:'completed','jobOwner': user.user_id}">
+	<li ng-repeat="request in requests | filter: {status:'completed','jobOwner': user.user_id, 'ownerArchive':false}">
 		{{request}}
-		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Archive</a>
+		<a href="" ng-click="archiveRequest(request._id)" class="btn btn-default">Archive</a>
+	</li>
+</ul>
+
+<h1>Archive {{(requests | filter:{status:'completed','jobOwner': user.user_id, 'ownerArchive':true}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'completed','jobOwner': user.user_id, 'ownerArchive':true}">
+		{{request}}
+		<a href="" ng-click="archiveRequest(request._id)" class="btn btn-default">Archive</a>
 	</li>
 </ul>
 
@@ -58,9 +66,18 @@
 </ul>
 
 
-<h1>Completed {{(requests | filter:{status:'completed','applicant': user.user_id}).length}}</h1>
+<h1>Completed {{(requests | filter:{status:'completed','applicant': user.user_id, 'applicantArchive': false}).length}}</h1>
 <ul>
-	<li ng-repeat="request in requests | filter: {status:'completed','applicant': user.user_id}">
+	<li ng-repeat="request in requests | filter: {status:'completed','applicant': user.user_id, 'applicantArchive': false}">
+		{{request}}
+		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">View Rating and Comment</a>
+		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Archive</a>
+	</li>
+</ul>
+
+<h1>Archived {{(requests | filter:{status:'completed','applicant': user.user_id, 'applicantArchive': true}).length}}</h1>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'completed','applicant': user.user_id, 'applicantArchive': true}">
 		{{request}}
 		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">View Rating and Comment</a>
 		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Archive</a>
