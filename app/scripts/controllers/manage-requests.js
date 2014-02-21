@@ -1,4 +1,4 @@
-app.controller('ManageRequestsCtrl', ['$rootScope', '$scope', 'jobsService', 'userService', 'comService', function ($rootScope, $scope, jobsService, userService, comService) {
+app.controller('ManageRequestsCtrl', ['$rootScope', '$scope', '$location', 'jobsService', 'userService', 'comService', function ($rootScope, $scope, $location, jobsService, userService, comService) {
 	'use strict';
 
 	$scope.jobs = {};
@@ -26,26 +26,49 @@ app.controller('ManageRequestsCtrl', ['$rootScope', '$scope', 'jobsService', 'us
 		var comRequest = comService.updateRequest(id, $scope.request);
 
 		comRequest.then(function(data){
-			console.log(data);
+			
 		}, function(){
 	    // error response
 			$rootScope.$broadcast('connectionFailure');
 		});
 	};
 
-	$scope.archiveRequest = function(){
-		$scope.request.status = 'archive';
-		if($scope.request.jobOwner === user.user_id){
+
+	$scope.completedRequest = function(data){
+
+		$scope.request = data;
+		var id = data._id;
+		$scope.request.status = 'completed';
+		$scope.request.stage = 4;
+
+		delete $scope.request._id;
+
+		var comRequest = comService.updateRequest(id, $scope.request);
+
+		comRequest.then(function(data){
+			$location.path('/view-requests/' + data._id);
+		}, function(){
+	    // error response
+			$rootScope.$broadcast('connectionFailure');
+		});
+	};
+
+	$scope.archiveRequest = function(data){
+		$scope.request = data;
+		var id = data._id;
+		$scope.request.status = 'completed';
+		console.log($scope.user.user_id);
+		if($scope.request.jobOwner === $scope.user.user_id){
 			$scope.request.ownerArchive = true;
-		} else if ($scope.request.applicant === user.user_id){
+		} else if ($scope.request.applicant === $scope.user.user_id){
 			$scope.request.applicantArchive = true;
 		}
 
 		delete $scope.request._id;
 
-		var comRequest = comService.updateRequest($scope.idParam, $scope.request);
+		var comRequest = comService.updateRequest(id, $scope.request);
 		comRequest.then(function(data){
-			$location.path('/manage-requests/');
+			
 		}, function(){
 	    // error response
 	    $rootScope.$broadcast('connectionFailure');

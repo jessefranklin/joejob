@@ -1,88 +1,46 @@
 <div>
 
-
-<h1>My Jobs <small>{{(requests | filter:{jobOwner:user.user_id}).length}}</small></h1>
-<ul>
-	<li ng-repeat="request in requests | filter: {jobOwner:user.user_id}">
-	{{$index + 1}}{{request}}
-		<a href="#/view-request/{{request._id}}" class="btn btn-default">View</a>
-		<a href="#/edit/{{request.jobId}}" class="btn btn-default" ng-click="">Edit</a>
-		<a href="" ng-click="deleteRequest(request._id)" class="btn btn-default">Delete</a>
-	</li>
-</ul>
+My ID {{user.user_id}}
 <h1>Applicants for my Jobs{{(requests | filter:{status:'owner','jobOwner': user.user_id}).length}}</h1>
 <ul>
 	<li ng-repeat="request in requests | filter: {status:'owner','jobOwner': user.user_id}">
-
 		{{$index + 1}} {{request}}
-		<a href="#/view-request/{{request._id}}" class="btn btn-default">View</a>
-		<a href="#/edit-request/{{request._id}}" class="btn btn-default" ng-click="">Edit</a>
-		<a href="" ng-click="deleteRequest(request._id)" class="btn btn-default">Delete</a>
+		<a ng-href="#/view-request/{{request._id}}" class="btn btn-default">View</a>
 	</li>
 </ul>
-{{user.user_id}}
+
+
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'approved','jobOwner': user.user_id}">
+		{{$index + 1}} {{request}}
+	</li>
+</ul>
+
 <h1>Scheduled {{(requests | filter:{status:'confirmed','jobOwner': user.user_id}).length}}</h1>
 <ul>
 	<li ng-repeat="request in requests | filter: {status:'confirmed','jobOwner': user.user_id}">
 		{{request}}
-		<a href="#/view-request/{{request._id}}" class="btn btn-default" ng-click="">Job Completed</a>
-		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Alert Change</a>
+		<a ng-href="#/view-request/{{request._id}}" class="btn btn-default">Job Completed</a>
+		<a href="" class="btn btn-default">Alert Change</a>
 	</li>
 </ul>
 
-{{user.user_id}}
 <h1>Completed {{(requests | filter:{status:'completed','jobOwner': user.user_id, 'ownerArchive':false}).length}}</h1>
 <ul>
 	<li ng-repeat="request in requests | filter: {status:'completed','jobOwner': user.user_id, 'ownerArchive':false}">
 		{{request}}
-		<a href="" ng-click="archiveRequest(request._id)" class="btn btn-default">Archive</a>
+		<a ng-href="#/view-request/{{request._id}}" class="btn btn-default" ng-hide="request.stage === 'rated'">Rate and Comment</a>
+		<a href="" ng-click="archiveRequest(request)" class="btn btn-default">Archive</a>
 	</li>
 </ul>
 
-<h1>Archive {{(requests | filter:{status:'completed','jobOwner': user.user_id, 'ownerArchive':true}).length}}</h1>
+<h1>Archive {{(requests | filter: {status:'completed','jobOwner': user.user_id, 'ownerArchive':true}).length}}</h1>
 <ul>
-	<li ng-repeat="request in requests | filter: {status:'completed','jobOwner': user.user_id, 'ownerArchive':true}">
+	<li ng-repeat="request in requests | filter: {status:'completed', 'jobOwner': user.user_id, 'ownerArchive':true}">
 		{{request}}
-		<a href="" ng-click="archiveRequest(request._id)" class="btn btn-default">Archive</a>
 	</li>
 </ul>
 
-
-<h1>Applicants Requests in progress</h1>
-<h1>Approved {{(requests | filter:{status:'approved','applicant': user.user_id}).length}}</h1>
-<ul>
-	<li ng-repeat="request in requests | filter: {status:'approved','applicant': user.user_id }">
-		{{$index + 1}} {{request}}
-		<a href="#" ng-click="confirmRequest(request);" class="btn btn-default">Confirm</a>
-	</li>
-</ul>
-
-<h1>Declined {{(requests | filter:{status:'decline'}).length}}</h1>
-<ul>
-	<li ng-repeat="request in requests | filter: {status:'decline'}">
-		{{$index + 1}} {{request}}
-		<a href="" ng-click="deleteRequest(request._id)" class="btn btn-default">Remove</a>
-	</li>
-</ul>
-
-
-<h1>Completed {{(requests | filter:{status:'completed','applicant': user.user_id, 'applicantArchive': false}).length}}</h1>
-<ul>
-	<li ng-repeat="request in requests | filter: {status:'completed','applicant': user.user_id, 'applicantArchive': false}">
-		{{request}}
-		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">View Rating and Comment</a>
-		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Archive</a>
-	</li>
-</ul>
-
-<h1>Archived {{(requests | filter:{status:'completed','applicant': user.user_id, 'applicantArchive': true}).length}}</h1>
-<ul>
-	<li ng-repeat="request in requests | filter: {status:'completed','applicant': user.user_id, 'applicantArchive': true}">
-		{{request}}
-		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">View Rating and Comment</a>
-		<a href="" ng-click="#/edit-request/{{request._id}}" class="btn btn-default">Archive</a>
-	</li>
-</ul>
 
 </div>        
 

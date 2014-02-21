@@ -6,15 +6,27 @@
 <p>{{request.applicant}}</p>
 <p>{{request.jobCategory}}</p>
 
-<div>
+<div ng-show="request.status != 'confirmed'">
+  <a href="" class="btn btn-default" ng-click="updateRequest('accept');">Accept</a>
+  <a href="" class="btn btn-default" ng-click="updateRequest('decline');">Decline</a>
+</div>
+
+<div ng-show="request.stage === 'rated'">
+  Rating is {{rating}} <br/>
+  <div user-rating rating-value="rating" max="5" readonly="true" on-rating-selected="saveRatingToServer(rating)"></div>
+{{request.comment}}
+<a ng-href="" class="btn btn-default">Ok</a>
+</div>
+
+
+
+<div ng-show="request.status === 'confirmed' && request.stage === 3">
   Rating is {{rating}} <br/>
   <div user-rating rating-value="rating" max="5" on-rating-selected="saveRatingToServer(rating)"></div>
-</div>
+
 <textarea ng-model="request.comment"></textarea>
-<a href="" class="btn" ng-click="completeRequest();">Complete and Close Request</a>
+<a href="" class="btn btn-default" ng-click="completeRequest();">Complete and Close Request</a>
+</div>
 
 
-
-  <a href="" class="btn" ng-click="updateRequest('accept');">Accept</a>
-  <a href="" class="btn" ng-click="updateRequest('decline');">Decline</a>
 </div>

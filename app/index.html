@@ -31,8 +31,9 @@
         <li><a ng-href="#/add" ng-show="user.authorized">Add Job</a></li>
         <li><a ng-href="#/signup" ng-hide="user.authorized">Sign Up</a></li>
         <li><a ng-href="#/login" ng-hide="user.authorized">Login</a></li>
-        <li><a ng-href="#/manage" ng-show="user.authorized">Manage</a></li>
-        <li><a ng-href="#/manage-requests" ng-show="user.authorized">Manage Requests </a></li>
+        <li><a ng-href="#/manage" ng-show="user.authorized">Manage Jobs</a></li>
+        <li><a ng-href="#/manage-requests" ng-show="user.authorized">My Jobs In progress</a></li>
+        <li><a ng-href="#/manage-jobs-in-progress" ng-show="user.authorized">Manage Requests</a></li>
         <li><a ng-href="#/" ua-logout ng-show="user.authorized">Logout</a></li>
       </ul>
       <h3 class="text-muted">joejobs</h3>

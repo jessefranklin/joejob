@@ -1,0 +1,58 @@
+<div>
+
+My ID {{user.user_id}}
+
+<h1>Applicants Requests in progress</h1>
+
+<h2>Request Sent {{(requests | filter:{status:'owner','applicant': user.user_id}).length}}</h2>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'owner','applicant': user.user_id }">
+		{{$index + 1}} {{request}}
+	</li>
+</ul>
+
+
+<h2>Approved {{(requests | filter:{status:'approved','applicant': user.user_id}).length}}</h2>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'approved','applicant': user.user_id }">
+		{{$index + 1}} {{request}}
+		<a href="#" ng-click="confirmRequest(request);" class="btn btn-default">Confirm</a>
+	</li>
+</ul>
+
+
+<h2>Scheduled {{(requests | filter:{status:'confirmed','applicant': user.user_id}).length}}</h2>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'confirmed','applicant': user.user_id }">
+		{{$index + 1}} {{request}}
+	</li>
+</ul>
+
+
+<h2>Declined {{(requests | filter:{status:'decline'}).length}}</h2>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'decline'}">
+		{{$index + 1}} {{request}}
+		<a href="" ng-click="deleteRequest(request._id)" class="btn btn-default">Remove</a>
+	</li>
+</ul>
+
+
+<h2>Completed {{(requests | filter:{status:'completed','applicant': user.user_id, 'applicantArchive': false}).length}}</h2>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'completed',applicant: user.user_id, applicantArchive: false}">
+		{{request}}
+		<a href="" class="btn btn-default" ng-click="archiveRequest(request)" ng-show="request.stage === 'rated'">Archive</a>
+	</li>
+</ul>
+
+<h2>Archived {{(requests | filter:{status:'completed', applicant: user.user_id, applicantArchive: true}).length}}</h2>
+<ul>
+	<li ng-repeat="request in requests | filter: {status:'completed', applicant: user.user_id, applicantArchive: true}">
+		{{request}}
+	</li>
+</ul>
+
+</div>        
+
+ 

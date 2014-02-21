@@ -54,6 +54,10 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
         templateUrl: 'views/manage-requests.html',
         controller: 'ManageRequestsCtrl'
       })
+      .when('/manage-jobs-in-progress', {
+        templateUrl: 'views/manage-work-requests.html',
+        controller: 'ManageRequestsCtrl'
+      })
       .when('/user', {
         templateUrl: 'views/user.html',
         controller: 'UserCtrl'

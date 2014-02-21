@@ -1,4 +1,4 @@
-app.controller('EnterCtrl', ['$rootScope', '$scope', 'jobsService', 'globalFunc', function ($rootScope, $scope, jobsService, globalFunc) {
+app.controller('EnterCtrl', ['$rootScope', '$scope', '$location', 'jobsService', 'globalFunc', function ($rootScope, $scope, $location, jobsService, globalFunc) {
 	'use strict';
 
 	$scope.job = {};
@@ -13,10 +13,17 @@ app.controller('EnterCtrl', ['$rootScope', '$scope', 'jobsService', 'globalFunc'
 	      $scope.job.location.long = results[0].geometry.location.e;
 	      $scope.job.owner = $scope.user.user_id;
 	      $scope.job.status = 'open';
+
+	      if($scope.job.cost.type === 'hr'){
+				$scope.job.cost.totalAmount = ($scope.job.cost.hours * $scope.job.cost.amount);
+	      } else if ($scope.job.cost.type === 'fixed'){
+				$scope.job.cost.totalAmount = $scope.job.cost.amount;
+	      }
+
 	      var promise = jobsService.postJob($scope.job);
 
 	      promise.then(function(data){
-
+	      			$location.path('/detail/' + data._id);
 				}, function(data){
 					// error response
 					console.log(data);

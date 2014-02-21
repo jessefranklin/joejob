@@ -24,7 +24,7 @@ app.controller('ViewRequestCtrl', ['$rootScope', '$scope', '$window', '$routePar
 
 	$scope.completeRequest = function(){
 		$scope.request.status = 'completed';
-		$scope.request.stage = 3;
+		$scope.request.stage = 'rated';
 		delete $scope.request._id;
 
 		var comRequest = comService.updateRequest($scope.idParam, $scope.request);
