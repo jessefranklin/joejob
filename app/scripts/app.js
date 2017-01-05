@@ -80,6 +80,11 @@ app.config(['$locationProvider', '$routeProvider',function($locationProvider, $r
         templateUrl: 'views/signup.html',
         public: true
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl',
+        public: true
+      })
       .otherwise({
         redirectTo: '/'
 			});

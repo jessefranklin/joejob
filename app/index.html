@@ -13,8 +13,6 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -28,6 +26,7 @@
     <div class="header">
       <ul class="nav nav-pills pull-right" >
         <li class="active"><a ng-href="#">Home</a></li>
+        <li><a ng-href="#/profile" ng-show="user.authorized">Profile</a></li>
         <li><a ng-href="#/add" ng-show="user.authorized">Add Job</a></li>
         <li><a ng-href="#/signup" ng-hide="user.authorized">Sign Up</a></li>
         <li><a ng-href="#/login" ng-hide="user.authorized">Login</a></li>
@@ -63,7 +62,6 @@
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/jquery.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -102,6 +100,7 @@
     <script src="scripts/controllers/signin.js"></script>
     <script src="scripts/controllers/thankyou.js"></script>
     <script src="scripts/controllers/view-request.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
     
 
   
